@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Company Registration Package — FintelliQ Advisory</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Grotesk:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --void:#060A12;--navy:#0B1F3A;--navy2:#0D2A50;
+  --blue:#0066FF;--cyan:#00D4FF;
+  --gold:#C9973A;--gold2:#E8B654;--gold-line:rgba(201,151,58,0.18);
+  --white:#F0F4FF;--off:#C8D4E8;--muted:#3A4E6A;--border:#0E1A2E;
+  --card:rgba(11,31,58,0.62);--card-b:rgba(0,102,255,0.13);
+}
+body{font-family:'Space Grotesk',sans-serif;background:#07091A;color:var(--white);min-height:100vh}
+
+/* HEADER */
+.hdr{background:var(--void);padding:14px 36px;display:flex;align-items:center;gap:18px;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+.hdr-sep{width:1px;height:36px;background:linear-gradient(to bottom,transparent,var(--gold),transparent);opacity:.3}
+.hdr-tag{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--muted);letter-spacing:.18em;text-transform:uppercase}
+.hdr-right{margin-left:auto}
+.hdr-badge{font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.15em;text-transform:uppercase;padding:4px 11px;border-radius:2px;border:1px solid var(--gold-line);color:var(--gold);opacity:.75}
+
+/* HERO */
+.hero{background:linear-gradient(140deg,var(--void) 0%,#0A1628 45%,var(--navy2) 100%);padding:56px 36px 52px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-160px;right:-140px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(0,102,255,.07) 0%,transparent 65%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--blue) 35%,var(--gold) 65%,transparent);opacity:.4}
+/* subtle gold corner accent */
+.hero-corner{position:absolute;top:0;right:0;width:120px;height:120px;background:radial-gradient(circle at top right,rgba(201,151,58,.06),transparent 70%);pointer-events:none}
+.pkg-tag{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-line);padding:5px 14px;border-radius:2px;margin-bottom:20px}
+.pkg-tag::before{content:'◆';font-size:.45rem;color:var(--gold);opacity:.7}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(1.9rem,5vw,2.75rem);font-weight:800;line-height:1.08;max-width:660px;background:linear-gradient(135deg,var(--white) 30%,#D4AA58 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{margin-top:14px;color:var(--muted);font-family:'DM Mono',monospace;font-size:.76rem;letter-spacing:.05em;max-width:580px;line-height:1.8}
+.hero-sub em{color:var(--gold);opacity:.7;font-style:normal}
+
+/* WRAP */
+.wrap{max-width:840px;margin:0 auto;padding:40px 20px 72px}
+
+/* PRICING */
+.pricing{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:30px}
+.tier{background:var(--navy);padding:20px 18px;position:relative}
+.tier::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.tier:nth-child(1)::before{background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.tier:nth-child(2)::before{background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.tier:nth-child(3)::before{background:linear-gradient(90deg,var(--cyan),var(--blue))}
+.tier:nth-child(4)::before{background:linear-gradient(90deg,var(--gold),var(--blue))}
+.tier:nth-child(5)::before{background:linear-gradient(90deg,var(--blue),var(--gold))}
+.tier:nth-child(6)::before{background:linear-gradient(90deg,var(--cyan),var(--gold))}
+.tier-lbl{font-family:'DM Mono',monospace;font-size:.57rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.tier-kes{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;color:var(--white);line-height:1.1}
+.tier-kes small{font-family:'Space Grotesk',sans-serif;font-size:.6rem;color:var(--muted);font-weight:400}
+.tier-usd{font-family:'DM Mono',monospace;font-size:.63rem;color:var(--gold);margin-top:4px;opacity:.8}
+
+/* CARD */
+.card{background:var(--card);border:1px solid var(--card-b);border-radius:12px;padding:28px 26px;margin-bottom:16px;backdrop-filter:blur(6px)}
+/* gold-tinted card variant */
+.card-g{border-color:var(--gold-line);background:linear-gradient(140deg,rgba(11,31,58,.75),rgba(13,42,80,.65))}
+
+/* SECTION LABEL */
+.sec{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:22px;padding-bottom:11px;border-bottom:1px solid rgba(0,102,255,.15);display:flex;align-items:center;gap:10px}
+.sec::before{content:'';width:3px;height:14px;background:linear-gradient(to bottom,var(--blue),var(--gold));border-radius:2px;flex-shrink:0}
+/* gold section variant */
+.sec-g{color:var(--gold);border-bottom-color:var(--gold-line)}
+.sec-g::before{background:linear-gradient(to bottom,var(--gold),var(--blue))}
+
+/* GOLD INLINE ACCENT — minimal, elegant */
+.g{color:var(--gold);opacity:.8}
+.gold-line-div{height:1px;background:linear-gradient(90deg,transparent,var(--gold-line),transparent);margin:20px 0}
+
+/* FIELDS */
+.fg{margin-bottom:17px}
+label{display:block;font-size:.77rem;font-weight:600;color:var(--off);margin-bottom:6px;letter-spacing:.02em}
+label .req{color:var(--blue);margin-left:2px}
+label .hint{font-weight:400;color:var(--muted);font-size:.68rem;margin-left:5px}
+input[type=text],input[type=email],input[type=tel],select,textarea{
+  width:100%;padding:11px 15px;background:rgba(6,10,18,.72);
+  border:1.5px solid rgba(0,102,255,.18);border-radius:7px;
+  font-family:'Space Grotesk',sans-serif;font-size:.85rem;color:var(--white);
+  transition:border-color .2s,box-shadow .2s;appearance:none}
+input::placeholder,textarea::placeholder{color:var(--muted)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,102,255,.1)}
+textarea{resize:vertical;min-height:88px}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%233A4E6A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 15px center;padding-right:38px;cursor:pointer;background-color:rgba(6,10,18,.72)}
+option{background:#0B1F3A;color:var(--white)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+/* RADIO / CHECKBOX */
+.rg,.cg{display:flex;flex-direction:column;gap:7px;margin-top:5px}
+.rg label,.cg label{display:flex;align-items:flex-start;gap:10px;font-weight:400;cursor:pointer;padding:11px 14px;background:rgba(6,10,18,.52);border:1.5px solid rgba(0,102,255,.15);border-radius:7px;font-size:.81rem;color:var(--muted);line-height:1.5;transition:border-color .2s,background .2s,color .2s;margin-bottom:0;letter-spacing:0}
+.rg label:hover,.cg label:hover{border-color:rgba(0,102,255,.45);background:rgba(0,102,255,.07);color:var(--off)}
+.rg input,.cg input{accent-color:var(--blue);width:15px;height:15px;margin-top:2px;flex-shrink:0}
+.rg-row{flex-direction:row;flex-wrap:wrap;gap:7px}
+.rg-row label{flex:1;min-width:130px}
+
+/* ADD-ON GRID */
+.addon-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;margin-top:6px}
+.ao label{display:flex;align-items:flex-start;gap:10px;padding:13px 15px;background:rgba(6,10,18,.5);border:1.5px solid rgba(0,102,255,.14);border-radius:7px;cursor:pointer;transition:border-color .2s,background .2s;margin-bottom:0;font-weight:400;font-size:.8rem;color:var(--muted);line-height:1.45}
+.ao label:hover{border-color:rgba(201,151,58,.35);background:rgba(201,151,58,.04);color:var(--off)}
+.ao input{accent-color:var(--gold);width:15px;height:15px;margin-top:2px;flex-shrink:0}
+.ao-price{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--gold);opacity:.75;margin-top:3px;display:block}
+
+/* NOTICE BOX */
+.notice{background:rgba(201,151,58,.05);border:1px solid var(--gold-line);border-left:3px solid var(--gold);border-radius:8px;padding:16px 18px;margin-bottom:20px}
+.notice h4{font-family:'Syne',sans-serif;font-size:.85rem;font-weight:800;color:var(--gold2);margin-bottom:7px}
+.notice p{font-family:'DM Mono',monospace;font-size:.69rem;color:var(--muted);line-height:1.75;letter-spacing:.02em}
+.notice p strong{color:var(--off)}
+
+/* PAYMENT BOX */
+.pay-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border:1px solid var(--gold-line);border-radius:10px;padding:22px 24px;margin:4px 0 16px}
+.pay-box h3{font-family:'Syne',sans-serif;font-size:.92rem;color:var(--gold);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.pay-box h3::before{content:'◆';font-size:.5rem;opacity:.7}
+.pay-notice{font-family:'DM Mono',monospace;font-size:.63rem;color:var(--muted);letter-spacing:.04em;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--gold-line)}
+.pay-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px}
+.pm{border-left:2px solid var(--blue);padding-left:13px}
+.pm.gold{border-left-color:var(--gold)}
+.pm-name{font-family:'DM Mono',monospace;font-size:.57rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+.pm p{font-size:.76rem;color:#4A6A8A;line-height:1.65}
+.pm p strong{color:var(--white)}
+.pm p .note{font-size:.65rem;color:#2A4A6A}
+
+/* SUBMIT */
+.sub-wrap{text-align:center;margin-top:32px;padding-top:8px}
+/* gold divider before button */
+.sub-wrap::before{content:'';display:block;width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 24px;opacity:.4}
+.btn{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;border:none;padding:16px 58px;font-family:'Syne',sans-serif;font-size:.9rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:7px;cursor:pointer;box-shadow:0 4px 28px rgba(0,102,255,.28);transition:opacity .2s,transform .15s}
+.btn:hover{opacity:.9;transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.sub-note{margin-top:10px;font-family:'DM Mono',monospace;font-size:.62rem;color:var(--muted);letter-spacing:.06em}
+.sub-note .g{font-size:.62rem}
+
+/* FOOTER */
+footer{background:var(--void);border-top:1px solid var(--border);padding:22px 24px;text-align:center}
+.footer-gold-line{width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 12px;opacity:.35}
+footer p{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--muted);letter-spacing:.06em;line-height:1.8}
+footer a{color:var(--gold);text-decoration:none;opacity:.7}
+
+@media(max-width:640px){.two{grid-template-columns:1fr}.hero{padding:36px 18px 32px}.hdr{padding:12px 18px}.card{padding:20px 16px}.wrap{padding:28px 14px 60px}.addon-grid{grid-template-columns:1fr}}
+
+
+/* PROCESS TIMELINE */
+.timeline{display:flex;flex-direction:column;gap:0;margin-bottom:28px}
+.tl-item{display:flex;gap:16px;padding-bottom:20px;position:relative}
+.tl-item:not(:last-child)::before{content:'';position:absolute;left:15px;top:34px;bottom:0;width:1px;background:linear-gradient(to bottom,var(--blue),rgba(0,102,255,.1))}
+.tl-dot{width:32px;height:32px;border-radius:50%;background:rgba(0,102,255,.12);border:1.5px solid rgba(0,102,255,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'DM Mono',monospace;font-size:.62rem;color:var(--blue);font-weight:600}
+.tl-body{padding-top:6px;flex:1}
+.tl-title{font-size:.82rem;font-weight:700;color:var(--white);margin-bottom:3px}
+.tl-desc{font-family:'DM Mono',monospace;font-size:.64rem;color:var(--muted);line-height:1.65;letter-spacing:.02em}
+.tl-time{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--gold);opacity:.7;margin-top:4px}
+
+/* DIRECTOR BLOCK */
+.dir-block{background:rgba(6,10,18,.5);border:1.5px solid rgba(0,102,255,.15);border-radius:8px;padding:18px 18px 14px;margin-bottom:12px;position:relative}
+.dir-block-label{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);opacity:.75;margin-bottom:14px;display:flex;align-items:center;gap:7px}
+.dir-block-label::before{content:'◆';font-size:.44rem}
+
+/* TIER COMPARISON */
+.tier-table{width:100%;border-collapse:collapse;margin-bottom:28px;font-size:.78rem}
+.tier-table th{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);background:rgba(6,10,18,.4)}
+.tier-table th:not(:first-child){text-align:center}
+.tier-table td{padding:11px 14px;border-bottom:1px solid rgba(0,102,255,.07);color:var(--off);vertical-align:top;font-size:.76rem}
+.tier-table td:not(:first-child){text-align:center;font-family:'DM Mono',monospace;font-size:.72rem}
+.tier-table tr:hover td{background:rgba(0,102,255,.04)}
+.check{color:var(--blue);font-size:.85rem}
+.cross{color:var(--muted);font-size:.85rem}
+.gold-check{color:var(--gold)}
+.tier-name-cell{font-family:'Syne',sans-serif;font-weight:800;font-size:.82rem}
+.tier-price-cell{font-family:'Syne',sans-serif;font-weight:800;font-size:.88rem;color:var(--white)}
+.tier-usd-cell{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--gold);opacity:.7;display:block;margin-top:2px}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <svg width="138" height="40" viewBox="0 0 240 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0066FF"/><stop offset="100%" stop-color="#00D4FF"/></linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#C9973A"/><stop offset="100%" stop-color="#E8B654"/></linearGradient>
+    <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#060A12"/><stop offset="100%" stop-color="#0B1F3A"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="1.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect x="1" y="1" width="62" height="62" rx="14" fill="url(#g3)" stroke="url(#g1)" stroke-width="1.5"/>
+  <circle cx="20" cy="20" r="3" fill="url(#g1)" filter="url(#glow)"/>
+  <circle cx="20" cy="33" r="3" fill="url(#g1)" filter="url(#glow)"/>
+  <circle cx="20" cy="46" r="3" fill="url(#g1)" filter="url(#glow)"/>
+  <circle cx="33" cy="14" r="2.5" fill="url(#g2)"/>
+  <circle cx="33" cy="27" r="4" fill="url(#g1)" filter="url(#glow)"/>
+  <circle cx="33" cy="40" r="2.5" fill="url(#g2)"/>
+  <circle cx="33" cy="53" r="2.5" fill="url(#g1)"/>
+  <circle cx="46" cy="20" r="3" fill="url(#g1)" filter="url(#glow)"/>
+  <circle cx="46" cy="33" r="3" fill="url(#g2)"/>
+  <circle cx="46" cy="46" r="3" fill="url(#g1)" filter="url(#glow)"/>
+  <line x1="23" y1="20" x2="30.5" y2="14" stroke="#0066FF" stroke-width="0.8" opacity="0.45"/>
+  <line x1="23" y1="20" x2="29" y2="27" stroke="#0066FF" stroke-width="0.8" opacity="0.45"/>
+  <line x1="23" y1="33" x2="29" y2="27" stroke="#0066FF" stroke-width="0.8" opacity="0.45"/>
+  <line x1="23" y1="33" x2="29" y2="40" stroke="#0066FF" stroke-width="0.8" opacity="0.45"/>
+  <line x1="23" y1="46" x2="29" y2="40" stroke="#0066FF" stroke-width="0.8" opacity="0.45"/>
+  <line x1="36.5" y1="14" x2="43" y2="20" stroke="#C9973A" stroke-width="0.8" opacity="0.45"/>
+  <line x1="37" y1="27" x2="43" y2="20" stroke="#0066FF" stroke-width="0.8" opacity="0.45"/>
+  <line x1="37" y1="27" x2="43" y2="33" stroke="#C9973A" stroke-width="0.8" opacity="0.45"/>
+  <line x1="36.5" y1="40" x2="43" y2="33" stroke="#0066FF" stroke-width="0.8" opacity="0.45"/>
+  <line x1="36.5" y1="40" x2="43" y2="46" stroke="#0066FF" stroke-width="0.8" opacity="0.45"/>
+  <circle cx="33" cy="33" r="29" fill="none" stroke="url(#g1)" stroke-width="0.4" opacity="0.1" stroke-dasharray="3 4"/>
+  <text x="74" y="38" font-family="Syne,sans-serif" font-weight="800" font-size="24" fill="#F0F4FF" letter-spacing="-0.5">Fintelli</text>
+  <text x="182" y="38" font-family="Syne,sans-serif" font-weight="800" font-size="24" fill="url(#g2)">Q</text>
+  <text x="74" y="52" font-family="DM Mono,monospace" font-size="7.5" fill="#3A4E6A" letter-spacing="2.5">ADVISORY COMPANY LTD</text>
+</svg>
+  <div class="hdr-sep"></div>
+  <div class="hdr-tag">Client Intake Form</div>
+  <div class="hdr-right"><div class="hdr-badge">◆ Verified</div></div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-corner"></div>
+  <div class="pkg-tag">Bundle 08 · Company Registration</div>
+  <h1>Company Registration &<br>Business Setup Package</h1>
+  <div class="hero-sub">// End-to-end eCitizen registration — walk out of our office and wait for your Certificate of Incorporation.<br><em>◆ Name search · Incorporation · PIN · VAT · NHIF · NSSF · Business Permit</em></div>
+</div>
+
+<div class="wrap">
+
+  <!-- WHAT WE HANDLE -->
+  <div class="notice">
+    <h4>◆ What We Handle For You — Start to Finish</h4>
+    <p>You provide the details. We handle everything on eCitizen, KRA iTax, NHIF, NSSF, and the Business Registration Service. By the time you leave our office, your application is submitted and you are simply waiting for your <strong>Certificate of Incorporation</strong>, PIN, and compliance certificates to be issued.</p>
+  </div>
+
+  <!-- PROCESS TIMELINE -->
+  <div class="card">
+    <div class="sec">The Registration Journey</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot">01</div>
+        <div class="tl-body">
+          <div class="tl-title">Business Name Search & Reservation</div>
+          <div class="tl-desc">We search eCitizen / BRS to confirm your preferred name is available. Up to 3 name options checked. Name reserved immediately upon confirmation.</div>
+          <div class="tl-time">Same day</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">02</div>
+        <div class="tl-body">
+          <div class="tl-title">Preparation of Incorporation Documents</div>
+          <div class="tl-desc">We prepare your Memorandum & Articles of Association, CR1 form, statement of nominal capital, and all director/shareholder declarations.</div>
+          <div class="tl-time">1–2 days</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">03</div>
+        <div class="tl-body">
+          <div class="tl-title">eCitizen Submission & Government Fees</div>
+          <div class="tl-desc">Full application submitted via eCitizen BRS portal. Government registration fees paid (separate from our service fee — we advise exact amounts per entity type).</div>
+          <div class="tl-time">Day 2–3</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">04</div>
+        <div class="tl-body">
+          <div class="tl-title">Certificate of Incorporation Issued</div>
+          <div class="tl-desc">Government processing time: 3–7 working days (standard) or 1–2 days (express). We monitor status and notify you immediately upon issuance.</div>
+          <div class="tl-time">3–7 working days</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">05</div>
+        <div class="tl-body">
+          <div class="tl-title">KRA PIN Registration — Company</div>
+          <div class="tl-desc">Company PIN registered on iTax using the Certificate of Incorporation. Required before any tax obligations or bank account opening.</div>
+          <div class="tl-time">Same day as certificate</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">06</div>
+        <div class="tl-body">
+          <div class="tl-title">NHIF & NSSF Employer Registration</div>
+          <div class="tl-desc">Company registered as an employer on NHIF and NSSF portals. Employer numbers issued. Required if you have or plan to have employees.</div>
+          <div class="tl-time">1–2 days</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">07</div>
+        <div class="tl-body">
+          <div class="tl-title">County Business Permit (Single Business Permit)</div>
+          <div class="tl-desc">Application submitted via eCitizen for your county business permit. Required to legally operate from your business premises.</div>
+          <div class="tl-time">3–5 working days</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">08</div>
+        <div class="tl-body">
+          <div class="tl-title">VAT Registration (if applicable)</div>
+          <div class="tl-desc">VAT registration on iTax if your business turnover exceeds or is expected to exceed KES 5M per year, or if you choose voluntary registration.</div>
+          <div class="tl-time">2–3 days</div>
+        </div>
+      </div>
+      <div class="tl-item" style="padding-bottom:0">
+        <div class="tl-dot" style="background:rgba(201,151,58,.1);border-color:rgba(201,151,58,.3);color:var(--gold)">◆</div>
+        <div class="tl-body">
+          <div class="tl-title" style="color:var(--gold2)">Post-Registration Advisory Call</div>
+          <div class="tl-desc">30-minute call to walk you through your obligations — when to file, what to pay, how to open a business bank account, and your first steps as a registered company.</div>
+          <div class="tl-time">Included in all tiers</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRICING TIERS -->
+  <div class="pricing">
+    <div class="tier"><div class="tier-lbl">Sole Proprietor</div><div class="tier-kes">KES 8,500 <small>one-time</small></div><div class="tier-usd">≈ USD 65</div></div>
+    <div class="tier"><div class="tier-lbl">Private Ltd (1–2 Directors)</div><div class="tier-kes">KES 18,000 <small>one-time</small></div><div class="tier-usd">≈ USD 138</div></div>
+    <div class="tier"><div class="tier-lbl">Private Ltd (3–5 Directors)</div><div class="tier-kes">KES 28,000 <small>one-time</small></div><div class="tier-usd">≈ USD 215</div></div>
+    <div class="tier"><div class="tier-lbl">Private Ltd (6+ Directors)</div><div class="tier-kes">KES 38,000 <small>one-time</small></div><div class="tier-usd">≈ USD 292</div></div>
+    <div class="tier"><div class="tier-lbl">NGO / CBO / Trust</div><div class="tier-kes">KES 35,000 <small>one-time</small></div><div class="tier-usd">≈ USD 269</div></div>
+    <div class="tier"><div class="tier-lbl">Partnership</div><div class="tier-kes">KES 14,000 <small>one-time</small></div><div class="tier-usd">≈ USD 108</div></div>
+  </div>
+
+  <!-- TIER COMPARISON TABLE -->
+  <div class="card">
+    <div class="sec">What's Included Per Tier</div>
+    <div style="overflow-x:auto">
+      <table class="tier-table">
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Sole Prop</th>
+            <th>Ltd 1–2</th>
+            <th>Ltd 3–5</th>
+            <th>Ltd 6+</th>
+            <th>NGO/CBO</th>
+            <th>Partnership</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Business name search (3 options)</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>Name reservation on BRS/eCitizen</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>eCitizen application submission</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>Memorandum & Articles of Association</td><td><span class="cross">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="cross">—</span></td></tr>
+          <tr><td>Certificate of Incorporation (monitoring)</td><td><span class="cross">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="cross">—</span></td></tr>
+          <tr><td>Director / shareholder declarations</td><td><span class="cross">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>CR12 (Official company search)</td><td><span class="cross">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="cross">—</span></td></tr>
+          <tr><td>KRA Company PIN registration</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>NHIF Employer registration</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>NSSF Employer registration</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>County Business Permit application</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>Multiple directors (per director)</td><td><span class="cross">—</span></td><td>up to 2</td><td>up to 5</td><td><span class="gold-check">Unlimited</span></td><td><span class="gold-check">Unlimited</span></td><td>up to 4</td></tr>
+          <tr><td>VAT registration (if applicable)</td><td><span class="gold-check">+ KES 5,500</span></td><td><span class="gold-check">+ KES 5,500</span></td><td><span class="check">✓ Included</span></td><td><span class="check">✓ Included</span></td><td><span class="check">✓ Included</span></td><td><span class="gold-check">+ KES 5,500</span></td></tr>
+          <tr><td>NGO Board registration</td><td><span class="cross">—</span></td><td><span class="cross">—</span></td><td><span class="cross">—</span></td><td><span class="cross">—</span></td><td><span class="check">✓</span></td><td><span class="cross">—</span></td></tr>
+          <tr><td>Constitution / Trust Deed drafting</td><td><span class="cross">—</span></td><td><span class="cross">—</span></td><td><span class="cross">—</span></td><td><span class="cross">—</span></td><td><span class="check">✓</span></td><td><span class="cross">—</span></td></tr>
+          <tr>
+            <td><strong>Post-registration advisory call (30 min)</strong></td>
+            <td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td>
+          </tr>
+          <tr style="background:rgba(201,151,58,.04)">
+            <td><strong style="color:var(--white)">Our Service Fee</strong></td>
+            <td><div class="tier-price-cell">KES 8,500</div><span class="tier-usd-cell">≈ USD 65</span></td>
+            <td><div class="tier-price-cell">KES 18,000</div><span class="tier-usd-cell">≈ USD 138</span></td>
+            <td><div class="tier-price-cell">KES 28,000</div><span class="tier-usd-cell">≈ USD 215</span></td>
+            <td><div class="tier-price-cell">KES 38,000</div><span class="tier-usd-cell">≈ USD 292</span></td>
+            <td><div class="tier-price-cell">KES 35,000</div><span class="tier-usd-cell">≈ USD 269</span></td>
+            <td><div class="tier-price-cell">KES 14,000</div><span class="tier-usd-cell">≈ USD 108</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="notice" style="margin-bottom:0;margin-top:12px">
+      <h4>◆ Government Fees — Paid Separately</h4>
+      <p>eCitizen government fees are <strong>not included</strong> in our service fee above — they are paid directly to the government via eCitizen at the time of application. We advise exact amounts per entity type: Sole Proprietor ~KES 950, Private Ltd ~KES 10,650, NGO varies. <strong>We give you the exact figure before submission — no surprises.</strong></p>
+    </div>
+  </div>
+
+  <form action="https://formspree.io/f/COMPANY_FORM_ID" method="POST">
+    <input type="hidden" name="_subject" value="New Company Registration Enquiry — FintelliQ">
+    <input type="hidden" name="package" value="Company Registration & Business Setup Package">
+
+    <!-- ── 1. YOUR DETAILS ── -->
+    <div class="card">
+      <div class="sec">Your Contact Details</div>
+      <div class="two">
+        <div class="fg"><label>Full Name <span class="req">*</span></label><input type="text" name="full_name" required placeholder="Your full name"></div>
+        <div class="fg"><label>Phone / WhatsApp <span class="req">*</span></label><input type="tel" name="phone" required placeholder="+254 7XX XXX XXX"></div>
+      </div>
+      <div class="fg"><label>Email Address <span class="req">*</span></label><input type="email" name="email" required placeholder="your@email.com"></div>
+      <div class="two">
+        <div class="fg"><label>National ID / Passport No. <span class="req">*</span></label><input type="text" name="id_number" required placeholder="Your personal ID or passport"></div>
+        <div class="fg"><label>County / Location <span class="req">*</span></label><input type="text" name="location" required placeholder="e.g. Nairobi, Mombasa, Kisumu"></div>
+      </div>
+      <div class="fg"><label>Do you have a personal KRA PIN?</label>
+        <div class="rg rg-row">
+          <label><input type="radio" name="has_personal_pin" value="Yes"> Yes — I have one</label>
+          <label><input type="radio" name="has_personal_pin" value="No — need registration"> No — need to register</label>
+        </div>
+      </div>
+      <div class="fg"><label>Personal KRA PIN <span class="hint">(if yes)</span></label><input type="text" name="personal_pin" placeholder="A00XXXXXXXXX"></div>
+    </div>
+
+    <!-- ── 2. ENTITY TYPE ── -->
+    <div class="card">
+      <div class="sec">Business Entity Type</div>
+      <div class="fg"><label>What type of entity do you want to register? <span class="req">*</span></label>
+        <div class="rg">
+          <label><input type="radio" name="entity_type" value="Sole Proprietorship — KES 8,500" required>
+            <span><strong style="color:#F0F4FF">Sole Proprietorship</strong><br><span style="font-size:.74rem;color:var(--muted)">One owner, full control, personal liability — simplest structure (KES 8,500)</span></span>
+          </label>
+          <label><input type="radio" name="entity_type" value="Private Limited Company (1–2 Directors) — KES 18,000">
+            <span><strong style="color:#F0F4FF">Private Limited Company — 1 to 2 Directors</strong><br><span style="font-size:.74rem;color:var(--muted)">Separate legal entity, limited liability, professional credibility (KES 18,000)</span></span>
+          </label>
+          <label><input type="radio" name="entity_type" value="Private Limited Company (3–5 Directors) — KES 28,000">
+            <span><strong style="color:#F0F4FF">Private Limited Company — 3 to 5 Directors</strong><br><span style="font-size:.74rem;color:var(--muted)">Multiple stakeholders, shared ownership, board structure (KES 28,000)</span></span>
+          </label>
+          <label><input type="radio" name="entity_type" value="Private Limited Company (6+ Directors) — KES 38,000">
+            <span><strong style="color:#F0F4FF">Private Limited Company — 6 or More Directors</strong><br><span style="font-size:.74rem;color:var(--muted)">Larger shareholding structures, institutional investors welcome (KES 38,000)</span></span>
+          </label>
+          <label><input type="radio" name="entity_type" value="Partnership — KES 14,000">
+            <span><strong style="color:#F0F4FF">Partnership</strong><br><span style="font-size:.74rem;color:var(--muted)">2 to 4 partners, shared profit & liability, partnership deed included (KES 14,000)</span></span>
+          </label>
+          <label><input type="radio" name="entity_type" value="NGO / CBO / Trust / Foundation — KES 35,000">
+            <span><strong style="color:#F0F4FF">NGO / CBO / Trust / Foundation</strong><br><span style="font-size:.74rem;color:var(--muted)">Not-for-profit entity, NGO Board registration, constitution drafting (KES 35,000)</span></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 3. BUSINESS DETAILS ── -->
+    <div class="card">
+      <div class="sec">Business Details</div>
+      <div class="fg"><label>Preferred Business Name (1st choice) <span class="req">*</span></label><input type="text" name="name_1" required placeholder="Your preferred company name"></div>
+      <div class="fg"><label>Alternative Name (2nd choice)</label><input type="text" name="name_2" placeholder="In case first choice is taken"></div>
+      <div class="fg"><label>Alternative Name (3rd choice)</label><input type="text" name="name_3" placeholder="Final backup option"></div>
+      <div class="two">
+        <div class="fg"><label>Business Activity / Nature of Business <span class="req">*</span></label><input type="text" name="business_activity" required placeholder="e.g. Financial Advisory, General Trade, ICT"></div>
+        <div class="fg"><label>Business Sector</label>
+          <select name="sector">
+            <option value="">Select sector</option>
+            <option>Financial Services & Advisory</option>
+            <option>Trade & Commerce</option>
+            <option>Agriculture & Agribusiness</option>
+            <option>Construction & Real Estate</option>
+            <option>ICT & Technology</option>
+            <option>Health & Medical Services</option>
+            <option>Education & Training</option>
+            <option>Transport & Logistics</option>
+            <option>Hospitality & Tourism</option>
+            <option>Manufacturing</option>
+            <option>Professional Services</option>
+            <option>Media & Creative Arts</option>
+            <option>NGO / Non-Profit / Social Enterprise</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg"><label>Proposed Business Address / Location <span class="req">*</span></label><input type="text" name="business_address" required placeholder="Physical address where business will operate"></div>
+      <div class="fg"><label>Postal Address</label><input type="text" name="postal_address" placeholder="P.O. Box XXXXX – XXXXX, City"></div>
+      <div class="two">
+        <div class="fg"><label>Proposed Share Capital <span class="hint">(Limited companies)</span></label>
+          <select name="share_capital">
+            <option value="">Select</option>
+            <option>KES 100,000 (standard minimum)</option>
+            <option>KES 500,000</option>
+            <option>KES 1,000,000</option>
+            <option>KES 5,000,000</option>
+            <option>KES 10,000,000+</option>
+            <option>Advise me</option>
+          </select>
+        </div>
+        <div class="fg"><label>Number of Directors / Partners / Officials <span class="req">*</span></label>
+          <select name="num_directors" required>
+            <option value="">Select</option>
+            <option>1</option><option>2</option><option>3</option>
+            <option>4</option><option>5</option><option>6</option>
+            <option>7</option><option>8</option><option>9</option>
+            <option>10+</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg"><label>Brief description of what the business will do <span class="req">*</span></label>
+        <textarea name="business_desc" required rows="3" placeholder="e.g. We will provide financial advisory services, tax consulting, and business development support to SMEs across Kenya..."></textarea>
+      </div>
+    </div>
+
+    <!-- ── 4. DIRECTORS / SHAREHOLDERS ── -->
+    <div class="card card-g">
+      <div class="sec sec-g">Director / Shareholder Details</div>
+      <p style="font-family:'DM Mono',monospace;font-size:.68rem;color:var(--muted);margin-bottom:20px;letter-spacing:.04em">// Complete details for each director, partner, or official. All persons must have a valid KRA PIN — we register any missing PINs as an add-on.</p>
+
+      <!-- DIRECTOR 1 — always shown -->
+      <div class="dir-block">
+        <div class="dir-block-label">Director / Shareholder 1 <span style="color:var(--blue);opacity:.6;margin-left:4px">(Primary)</span></div>
+        <div class="two">
+          <div class="fg"><label>Full Name <span class="req">*</span></label><input type="text" name="dir1_name" required placeholder="Full legal name"></div>
+          <div class="fg"><label>ID / Passport Number <span class="req">*</span></label><input type="text" name="dir1_id" required placeholder="National ID or Passport"></div>
+        </div>
+        <div class="two">
+          <div class="fg"><label>KRA PIN <span class="req">*</span></label><input type="text" name="dir1_pin" required placeholder="A00XXXXXXXXX"></div>
+          <div class="fg"><label>Phone Number</label><input type="tel" name="dir1_phone" placeholder="+254 7XX XXX XXX"></div>
+        </div>
+        <div class="two">
+          <div class="fg"><label>Email Address</label><input type="email" name="dir1_email" placeholder="director1@email.com"></div>
+          <div class="fg"><label>Nationality</label><input type="text" name="dir1_nationality" placeholder="e.g. Kenyan" value="Kenyan"></div>
+        </div>
+        <div class="two">
+          <div class="fg"><label>Shareholding % <span class="hint">(Ltd companies)</span></label><input type="text" name="dir1_shares" placeholder="e.g. 50%"></div>
+          <div class="fg"><label>Role / Designation</label>
+            <select name="dir1_role"><option>Director</option><option>Managing Director</option><option>Chairperson</option><option>Secretary</option><option>Shareholder only</option><option>Partner</option><option>Patron</option><option>Trustee</option></select>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIRECTOR 2 -->
+      <div class="dir-block">
+        <div class="dir-block-label">Director / Shareholder 2</div>
+        <div class="two">
+          <div class="fg"><label>Full Name</label><input type="text" name="dir2_name" placeholder="Full legal name"></div>
+          <div class="fg"><label>ID / Passport Number</label><input type="text" name="dir2_id" placeholder="National ID or Passport"></div>
+        </div>
+        <div class="two">
+          <div class="fg"><label>KRA PIN</label><input type="text" name="dir2_pin" placeholder="A00XXXXXXXXX"></div>
+          <div class="fg"><label>Phone Number</label><input type="tel" name="dir2_phone" placeholder="+254 7XX XXX XXX"></div>
+        </div>
+        <div class="two">
+          <div class="fg"><label>Email Address</label><input type="email" name="dir2_email" placeholder="director2@email.com"></div>
+          <div class="fg"><label>Nationality</label><input type="text" name="dir2_nationality" placeholder="e.g. Kenyan"></div>
+        </div>
+        <div class="two">
+          <div class="fg"><label>Shareholding %</label><input type="text" name="dir2_shares" placeholder="e.g. 50%"></div>
+          <div class="fg"><label>Role / Designation</label>
+            <select name="dir2_role"><option value="">Select (if applicable)</option><option>Director</option><option>Managing Director</option><option>Chairperson</option><option>Secretary</option><option>Shareholder only</option><option>Partner</option><option>Patron</option><option>Trustee</option></select>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIRECTOR 3 -->
+      <div class="dir-block">
+        <div class="dir-block-label">Director / Shareholder 3</div>
+        <div class="two">
+          <div class="fg"><label>Full Name</label><input type="text" name="dir3_name" placeholder="Full legal name"></div>
+          <div class="fg"><label>ID / Passport Number</label><input type="text" name="dir3_id" placeholder="National ID or Passport"></div>
+        </div>
+        <div class="two">
+          <div class="fg"><label>KRA PIN</label><input type="text" name="dir3_pin" placeholder="A00XXXXXXXXX"></div>
+          <div class="fg"><label>Phone Number</label><input type="tel" name="dir3_phone" placeholder="+254 7XX XXX XXX"></div>
+        </div>
+        <div class="two">
+          <div class="fg"><label>Shareholding %</label><input type="text" name="dir3_shares" placeholder="e.g. 25%"></div>
+          <div class="fg"><label>Role / Designation</label>
+            <select name="dir3_role"><option value="">Select (if applicable)</option><option>Director</option><option>Managing Director</option><option>Chairperson</option><option>Secretary</option><option>Shareholder only</option><option>Partner</option><option>Patron</option><option>Trustee</option></select>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIRECTOR 4 -->
+      <div class="dir-block">
+        <div class="dir-block-label">Director / Shareholder 4</div>
+        <div class="two">
+          <div class="fg"><label>Full Name</label><input type="text" name="dir4_name" placeholder="Full legal name"></div>
+          <div class="fg"><label>ID / Passport Number</label><input type="text" name="dir4_id" placeholder="National ID or Passport"></div>
+        </div>
+        <div class="two">
+          <div class="fg"><label>KRA PIN</label><input type="text" name="dir4_pin" placeholder="A00XXXXXXXXX"></div>
+          <div class="fg"><label>Phone Number</label><input type="tel" name="dir4_phone" placeholder="+254 7XX XXX XXX"></div>
+        </div>
+        <div class="two">
+          <div class="fg"><label>Shareholding %</label><input type="text" name="dir4_shares" placeholder="e.g. 25%"></div>
+          <div class="fg"><label>Role / Designation</label>
+            <select name="dir4_role"><option value="">Select (if applicable)</option><option>Director</option><option>Managing Director</option><option>Chairperson</option><option>Secretary</option><option>Shareholder only</option><option>Partner</option><option>Patron</option><option>Trustee</option></select>
+          </div>
+        </div>
+      </div>
+
+      <div class="fg" style="margin-bottom:0"><label>Additional Directors / Partners (5 or more) <span class="hint">provide details here</span></label>
+        <textarea name="extra_directors" rows="4" placeholder="Director 5: Full Name, ID No., KRA PIN, Phone, Email, Shareholding%, Role&#10;Director 6: Full Name, ID No., KRA PIN, Phone, Email, Shareholding%, Role&#10;(Continue for all additional directors)"></textarea>
+      </div>
+    </div>
+
+    <!-- ── 5. ADD-ONS ── -->
+    <div class="card">
+      <div class="sec">Add-On Services</div>
+      <p style="font-family:'DM Mono',monospace;font-size:.68rem;color:var(--muted);margin-bottom:18px;letter-spacing:.04em">// Select any additional services to complete your business setup</p>
+      <div class="addon-grid">
+        <div class="ao"><label><input type="checkbox" name="addons" value="VAT Registration — KES 5,500">
+          <div><strong style="color:#F0F4FF">VAT Registration</strong><br><span style="font-size:.72rem">Add to your package if turnover ≥ KES 5M or voluntary</span><span class="ao-price">KES 5,500 · ≈ USD 42</span></div></label></div>
+        <div class="ao"><label><input type="checkbox" name="addons" value="KRA PIN Registration (per director) — KES 3,500 each">
+          <div><strong style="color:#F0F4FF">KRA PIN — Per Director</strong><br><span style="font-size:.72rem">For any director who doesn't yet have a PIN</span><span class="ao-price">KES 3,500 each · ≈ USD 27</span></div></label></div>
+        <div class="ao"><label><input type="checkbox" name="addons" value="Company Seal — KES 4,500">
+          <div><strong style="color:#F0F4FF">Company Seal / Rubber Stamp</strong><br><span style="font-size:.72rem">Official company seal for signing documents</span><span class="ao-price">KES 4,500 · ≈ USD 35</span></div></label></div>
+        <div class="ao"><label><input type="checkbox" name="addons" value="Business Bank Account Introduction Letter — KES 3,000">
+          <div><strong style="color:#F0F4FF">Bank Account Introduction Letter</strong><br><span style="font-size:.72rem">Formal letter to assist opening your business bank account</span><span class="ao-price">KES 3,000 · ≈ USD 23</span></div></label></div>
+        <div class="ao"><label><input type="checkbox" name="addons" value="AGPO Certificate (Youth/Women/PWD) — KES 6,000">
+          <div><strong style="color:#F0F4FF">AGPO Certificate</strong><br><span style="font-size:.72rem">Youth, Women, or PWD enterprise certificate for tenders</span><span class="ao-price">KES 6,000 · ≈ USD 46</span></div></label></div>
+        <div class="ao"><label><input type="checkbox" name="addons" value="Tax Compliance Certificate (TCC) — KES 5,000">
+          <div><strong style="color:#F0F4FF">Tax Compliance Certificate</strong><br><span style="font-size:.72rem">Required for tenders, contracts, and government work</span><span class="ao-price">KES 5,000 · ≈ USD 39</span></div></label></div>
+        <div class="ao"><label><input type="checkbox" name="addons" value="CR12 Official Company Search — KES 3,500">
+          <div><strong style="color:#F0F4FF">CR12 — Official Company Search</strong><br><span style="font-size:.72rem">Required by banks, tenders, and investors</span><span class="ao-price">KES 3,500 · ≈ USD 27</span></div></label></div>
+        <div class="ao"><label><input type="checkbox" name="addons" value="County Business Permit (SBP) — KES 5,000">
+          <div><strong style="color:#F0F4FF">County Business Permit (SBP)</strong><br><span style="font-size:.72rem">Single Business Permit for your operating county</span><span class="ao-price">KES 5,000 · ≈ USD 39</span></div></label></div>
+        <div class="ao"><label><input type="checkbox" name="addons" value="Registered Office Address (1 yr) — KES 12,000">
+          <div><strong style="color:#F0F4FF">Registered Office Address (1 year)</strong><br><span style="font-size:.72rem">Use FintelliQ's address as your registered office</span><span class="ao-price">KES 12,000/yr · ≈ USD 92</span></div></label></div>
+        <div class="ao"><label><input type="checkbox" name="addons" value="Company Profile / Brochure Design — KES 8,500">
+          <div><strong style="color:#F0F4FF">Company Profile Design</strong><br><span style="font-size:.72rem">Professional company profile for pitching to clients</span><span class="ao-price">KES 8,500 · ≈ USD 65</span></div></label></div>
+        <div class="ao"><label><input type="checkbox" name="addons" value="Post-Registration Compliance Package (3 months) — KES 15,000">
+          <div><strong style="color:#F0F4FF">3-Month Compliance Package</strong><br><span style="font-size:.72rem">Monthly nil/returns filing + advisory for your first 3 months</span><span class="ao-price">KES 15,000 · ≈ USD 116</span></div></label></div>
+        <div class="ao"><label><input type="checkbox" name="addons" value="Express Processing (1-2 day turnaround) — KES 8,000">
+          <div><strong style="color:#F0F4FF">Express Processing</strong><br><span style="font-size:.72rem">Priority handling — submitted same day, monitored daily</span><span class="ao-price">KES 8,000 · ≈ USD 62</span></div></label></div>
+      </div>
+    </div>
+
+    <!-- ── 6. COMPLIANCE REQUIREMENTS ── -->
+    <div class="card">
+      <div class="sec">Compliance & Obligations</div>
+      <div class="fg"><label>Will the company have employees from the start?</label>
+        <div class="rg rg-row">
+          <label><input type="radio" name="has_employees" value="Yes — immediately"> Yes — immediately</label>
+          <label><input type="radio" name="has_employees" value="Yes — within 3 months"> Yes — within 3 months</label>
+          <label><input type="radio" name="has_employees" value="No — directors only"> No — directors only for now</label>
+        </div>
+      </div>
+      <div class="fg"><label>Expected annual turnover in year 1?</label>
+        <select name="turnover">
+          <option value="">Select estimate</option>
+          <option>Under KES 1M</option>
+          <option>KES 1M – 5M</option>
+          <option>KES 5M – 25M (VAT threshold)</option>
+          <option>KES 25M – 100M</option>
+          <option>Over KES 100M</option>
+          <option>Pre-revenue / not sure yet</option>
+        </select>
+      </div>
+      <div class="fg"><label>Will you be doing business with government / applying for tenders?</label>
+        <div class="rg rg-row">
+          <label><input type="radio" name="tenders" value="Yes — immediately"> Yes — immediately</label>
+          <label><input type="radio" name="tenders" value="Yes — in future"> Yes — in future</label>
+          <label><input type="radio" name="tenders" value="No"> No</label>
+        </div>
+      </div>
+      <div class="fg"><label>Is any director a foreign national?</label>
+        <div class="rg rg-row">
+          <label><input type="radio" name="foreign_director" value="Yes"> Yes</label>
+          <label><input type="radio" name="foreign_director" value="No"> No</label>
+        </div>
+      </div>
+      <div class="fg"><label>Is there a specific deadline for registration? <span class="hint">(tender, contract, bank account, investor)</span></label>
+        <input type="text" name="deadline" placeholder="e.g. Must be registered by 1 August 2026 for a tender submission">
+      </div>
+      <div class="fg"><label>Anything else we should know about your business or registration?</label>
+        <textarea name="notes" rows="3" placeholder="Previous business name attempts, specific investor requirements, sector licensing needed, anything unique about your structure..."></textarea>
+      </div>
+    </div>
+
+    <!-- ── 7. PAYMENT ── -->
+    <div class="card">
+      <div class="sec">Payment</div>
+            <div class="pay-box">
+        <h3>How to Pay</h3>
+        <div class="pay-notice">50% deposit required to begin work · balance due on delivery · send proof via WhatsApp after payment</div>
+        <div class="pay-grid">
+          <div class="pm">
+            <div class="pm-name">M-Pesa</div>
+            <p>Send Money to<br><strong>+254 701 662 951</strong><br><span class="note">Name: Maureen Nyandwaki ✓</span></p>
+          </div>
+          <div class="pm">
+            <div class="pm-name">Bank · KES</div>
+            <p>Standard Chartered Kenya<br>A/C: <strong>0100449489200</strong><br>Maureen Nyabugei<br>SWIFT: <strong>SCBLKENX</strong></p>
+          </div>
+          <div class="pm gold">
+            <div class="pm-name">Bank · USD ◆</div>
+            <p>Standard Chartered<br>A/C: <strong>8700437099300</strong><br>Maureen Nyabugei<br>SWIFT: <strong>SCBLKENX</strong></p>
+          </div>
+          <div class="pm">
+            <div class="pm-name">Proof of Payment</div>
+            <p>WhatsApp to<br><strong>+254 705 772 618</strong><br><span class="note">or mnyabugei.finance@gmail.com</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="fg" style="margin-top:16px"><label>Preferred Payment Method <span class="req">*</span></label>
+        <div class="rg">
+          <label><input type="radio" name="payment_method" value="M-Pesa" required> M-Pesa — +254 701 662 951</label>
+          <label><input type="radio" name="payment_method" value="Bank Transfer KES — Standard Chartered 0100449489200"> Bank Transfer (KES) — Standard Chartered 0100449489200</label>
+          <label><input type="radio" name="payment_method" value="Bank Transfer USD — Standard Chartered 8700437099300"> Bank Transfer (USD) — Standard Chartered 8700437099300</label>
+        </div>
+      </div>
+      <div class="fg"><label>M-Pesa Transaction Code <span class="hint">(if already paid)</span></label>
+        <input type="text" name="mpesa_code" placeholder="e.g. QDK7XXXXXX">
+      </div>
+    </div>
+
+        <div class="sub-wrap">
+      <button type="submit" class="btn">Submit My Application</button>
+      <p class="sub-note">// Response within 2 hours &middot; <span class="g">mnyabugei.finance@gmail.com</span> &middot; +254 701 662 951 (Calls) //</p>
+    </div>
+  </form>
+</div>
+
+<footer>
+  <div class="footer-gold-line"></div>
+  <p>FintelliQ Advisory Company Ltd &middot; Nairobi, Kenya</p>
+  <p><a href="mailto:mnyabugei.finance@gmail.com">mnyabugei.finance@gmail.com</a> &middot; +254 701 662 951 (Calls) &middot; WhatsApp: +254 705 772 618 (WhatsApp)</p>
+</footer>
+</body>
+</html>

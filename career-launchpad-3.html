@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Career Launchpad — FintelliQ</title>
+<meta name="description" content="Executive CV writing, LinkedIn optimisation, interview coaching and career positioning by FintelliQ Company Limited.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Career Launchpad — FintelliQ">
+<meta property="og:description" content="Executive CV writing, LinkedIn optimisation, interview coaching and career positioning by FintelliQ Company Limited.">
+<meta property="og:image" content="https://mnyabugei-888.github.io/FintelliQ-Forms/assets/fintelliq-logo.png">
+<meta property="og:url" content="https://mnyabugei-888.github.io/FintelliQ-Forms/career-launchpad.html">
+<meta property="og:site_name" content="FintelliQ">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Career Launchpad — FintelliQ">
+<meta name="twitter:description" content="Executive CV writing, LinkedIn optimisation, interview coaching and career positioning by FintelliQ Company Limited.">
+<meta name="twitter:image" content="https://mnyabugei-888.github.io/FintelliQ-Forms/assets/fintelliq-logo.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Grotesk:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+
+/* HEADER */
+
+/* HERO */
+.hero{background:linear-gradient(140deg,var(--void) 0%,#091829 45%,var(--navy2) 100%);padding:54px 34px 46px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-130px;right:-120px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(0,102,255,.08) 0%,transparent 68%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--blue) 35%,var(--gold) 65%,transparent);opacity:.4}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:.59rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,151,58,.28);padding:5px 13px;border-radius:2px;margin-bottom:20px}
+.eyebrow::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(1.85rem,5vw,2.7rem);font-weight:800;line-height:1.08;max-width:660px;background:linear-gradient(135deg,var(--white) 38%,var(--gold2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{margin-top:13px;font-family:'DM Mono',monospace;font-size:.77rem;color:var(--muted);letter-spacing:.05em;max-width:580px;line-height:1.78}
+.hero-sub .g{color:rgba(201,151,58,.7)}
+
+/* WRAP */
+.wrap{max-width:840px;margin:0 auto;padding:38px 18px 70px}
+
+/* PRICING */
+.pricing{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:11px;overflow:hidden;margin-bottom:28px}
+.tier{background:var(--navy);padding:19px 17px;position:relative}
+.tier::after{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.tier:nth-child(1)::after{background:var(--blue)}
+.tier:nth-child(2)::after{background:var(--gold)}
+.tier:nth-child(3)::after{background:var(--cyan)}
+.tier:nth-child(4)::after{background:linear-gradient(90deg,var(--blue),var(--gold))}
+.tier:nth-child(5)::after{background:var(--blue)}
+.tier:nth-child(6)::after{background:var(--gold)}
+.t-lbl{font-family:'DM Mono',monospace;font-size:.57rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.t-kes{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;color:var(--white);line-height:1.1}
+.t-kes small{font-family:'Space Grotesk',sans-serif;font-size:.61rem;color:var(--muted);font-weight:400}
+.t-usd{font-family:'DM Mono',monospace;font-size:.63rem;color:var(--gold);margin-top:5px;opacity:.8}
+
+/* CARDS */
+
+/* SECTION LABEL */
+
+/* GOLD ACCENT */
+.g-note{font-family:'DM Mono',monospace;font-size:.66rem;color:rgba(201,151,58,.7);display:inline-flex;align-items:center;gap:5px;margin-bottom:4px}
+.g-note::before{content:'◆';font-size:.48rem}
+
+/* FIELDS */
+.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+
+/* RADIO / CHECKBOX */
+.rg label,.cg .rg-row 
+/* ADDON GRID */
+.ag{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;margin-top:5px}
+.ai .ai-p{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--gold);opacity:.75;margin-top:3px;display:block}
+
+/* ALERT BOX */
+.alert{background:rgba(201,151,58,.06);border:1px solid rgba(201,151,58,.2);border-radius:9px;padding:16px 18px;margin-bottom:18px}
+.alert h4{font-family:'Syne',sans-serif;font-size:.83rem;font-weight:800;color:var(--gold2);margin-bottom:7px;display:flex;align-items:center;gap:7px}
+.alert p{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--muted);line-height:1.75;letter-spacing:.02em}
+.alert strong{color:var(--off)}
+
+/* PAYMENT */
+.pay-box h3::after{content:'';flex:1;height:1px;background:rgba(201,151,58,.18);margin-left:4px}
+.pg{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px}
+.pm.gld{border-left-color:var(--gold)}
+.pm-n{font-family:'DM Mono',monospace;font-size:.57rem;letter-spacing:.17em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+
+/* DEPOSIT NOTE */
+.dep{font-family:'DM Mono',monospace;font-size:.64rem;color:rgba(201,151,58,.6);text-align:center;margin-top:10px;letter-spacing:.06em}
+
+/* SUBMIT */
+.sw{text-align:center;margin-top:30px}
+.sn{margin-top:9px;font-family:'DM Mono',monospace;font-size:.62rem;color:var(--muted);letter-spacing:.05em}
+.sn span{color:rgba(201,151,58,.65)}
+
+/* FOOTER */
+.fg-rule{width:56px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:9px auto 0;opacity:.35}
+
+@media(max-width:640px){.two,.three{grid-template-columns:1fr}.hero{padding:34px 16px 30px}.wrap{padding:26px 13px 58px}.pricing{grid-template-columns:1fr 1fr}}
+.pm.gld .swift-visible{color:var(--gold);font-weight:600}@media(max-width:640px){}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Career Coaching",
+  "name": "Career Launchpad — FintelliQ",
+  "description": "Executive CV writing, LinkedIn optimisation, interview coaching and career positioning for professionals in Kenya and internationally.",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "FintelliQ Company Limited",
+    "image": "https://mnyabugei-888.github.io/FintelliQ-Forms/assets/fintelliq-logo.png",
+    "telephone": "+254701662951",
+    "email": "fintelliqltd@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Nairobi",
+      "addressCountry": "KE"
+    },
+    "priceRange": "KES 800 - KES 55,000",
+    "url": "https://mnyabugei-888.github.io/FintelliQ-Forms/"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Kenya"
+  },
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "KES",
+    "price": "8500",
+    "availability": "https://schema.org/InStock",
+    "url": "https://mnyabugei-888.github.io/FintelliQ-Forms/career-launchpad.html"
+  }
+}
+</script>
+</head>
+<body>
+<header class="hdr">
+  <img src="assets/fintelliq-logo-header.png" alt="FintelliQ Company Limited" class="hdr-logo">
+  <div class="hdr-sep"></div>
+  <div class="hdr-tag">Client Intake Form</div>
+  <div class="hdr-right"><div class="hdr-badge">◆ Verified</div></div>
+</header>
+<div class="hero">
+  <div class="eyebrow">Career Launchpad</div>
+  <h1>Career Launchpad</h1><div class="hero-sub-name">Executive Positioning &amp; Career Command</div>
+  <div class="hero-sub">// Get the interview — not just a polished CV.<br><span class="g">◆ ATS optimised · LinkedIn strategy · Executive coaching</span></div>
+</div>
+<div class="wrap">
+  <div class="pricing">
+    <div class="tier"><div class="t-lbl">Starter</div><div class="t-kes">KES 8,500 <small>/ 48 hrs</small></div><div class="t-usd">≈ USD 66</div></div>
+    <div class="tier"><div class="t-lbl">Professional</div><div class="t-kes">KES 15,000 <small>/ 72 hrs</small></div><div class="t-usd">≈ USD 116</div></div>
+    <div class="tier"><div class="t-lbl">Executive</div><div class="t-kes">KES 28,000 <small>/ 5 days</small></div><div class="t-usd">≈ USD 216</div></div>
+    <div class="tier"><div class="t-lbl">Monthly Coach</div><div class="t-kes">KES 12,000 <small>/mo</small></div><div class="t-usd">≈ USD 93/mo</div></div>
+  </div>
+  <form action="https://formspree.io/f/mqevnjll" method="POST">
+    <input type="hidden" name="_subject" value="Career Acceleration Enquiry — FintelliQ">
+    <input type="hidden" name="_next" value="https://mnyabugei-888.github.io/FintelliQ-Forms/thank-you.html">
+    <div class="card">
+      <div class="sec">Your Details</div>
+      <div class="two">
+        <div class="fg"><label>Full Name <span class="req">*</span></label><input type="text" name="full_name" required placeholder="Your full name"></div>
+        <div class="fg"><label>Phone / WhatsApp <span class="req">*</span></label><input type="tel" name="phone" required placeholder="+254 7XX XXX XXX"></div>
+      </div>
+      <div class="fg"><label>Email <span class="req">*</span></label><input type="email" name="email" required placeholder="your@email.com"></div>
+      <div class="two">
+        <div class="fg"><label>Location</label><input type="text" name="location" placeholder="City, Country"></div>
+        <div class="fg"><label>Industry / Field <span class="req">*</span></label><input type="text" name="industry" required placeholder="e.g. Finance, Healthcare"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="sec">Package Selection</div>
+      <div class="fg"><label>Which tier? <span class="req">*</span></label>
+        <div class="rg">
+          <label><input type="radio" name="tier" value="Starter — KES 8,500" required><span><strong style="color:#F0F4FF">Starter</strong> — ATS CV + Cover Letter + 30-min strategy call</span></label>
+          <label><input type="radio" name="tier" value="Professional — KES 15,000"><span><strong style="color:#F0F4FF">Professional</strong> — CV + Cover Letter + LinkedIn + Interview prep + 2 revisions</span></label>
+          <label><input type="radio" name="tier" value="Executive — KES 28,000"><span><strong style="color:#F0F4FF">Executive</strong> — Career audit + CV + LinkedIn + Personal Brand + 2 calls</span></label>
+          <label><input type="radio" name="tier" value="Monthly Career Coach — KES 12,000/mo"><span><strong style="color:#F0F4FF">Monthly Coach</strong> — Unlimited revisions + job tracking + weekly check-in</span></label>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="sec">Career Background</div>
+      <div class="two">
+        <div class="fg"><label>Years of Experience <span class="req">*</span></label>
+          <select name="experience" required><option value="">Select</option><option>0–2 years (Entry)</option><option>3–5 years (Mid)</option><option>6–10 years (Senior)</option><option>10+ years (Executive)</option></select></div>
+        <div class="fg"><label>Highest Qualification</label>
+          <select name="qualification"><option value="">Select</option><option>Certificate / Diploma</option><option>Bachelor's Degree</option><option>Master's Degree</option><option>PhD</option><option>Professional Certification</option></select></div>
+      </div>
+      <div class="fg"><label>Current Job Title</label><input type="text" name="current_role" placeholder="e.g. Finance Officer, Marketing Manager"></div>
+      <div class="fg"><label>Target Role <span class="req">*</span></label><input type="text" name="target_role" required placeholder="e.g. CFO, Senior Accountant, Data Analyst"></div>
+      <div class="fg"><label>Key career challenge <span class="req">*</span></label><textarea name="challenge" required placeholder="e.g. Not getting callbacks, career change, returning after a gap..."></textarea></div>
+      <div class="fg"><label>Existing CV?</label>
+        <div class="rg rg-row"><label><input type="radio" name="has_cv" value="Yes"> Yes — will send</label><label><input type="radio" name="has_cv" value="No"> No — starting fresh</label></div>
+      </div>
+      <div class="fg"><label>Target companies / roles</label><textarea name="targets" rows="2" placeholder="List companies or job links if available"></textarea></div>
+    </div>
+    <div class="card">
+      <div class="sec">Payment</div>    <div class="wa-card">
+      <div class="wa-qr-wrap"><img src="assets/whatsapp-qr.png" alt="Scan to chat with FintelliQ on WhatsApp" loading="lazy"></div>
+      <div class="wa-info">
+        <div class="wa-eyebrow">WhatsApp Business</div>
+        <h3>Have Questions Before You Submit?</h3>
+        <p>Scan to chat with a FintelliQ advisor directly — get quick answers or send reference files by hand.</p>
+        <a class="wa-btn" href="https://wa.me/254701662951" target="_blank" rel="noopener">&#128172; Message on WhatsApp</a>
+      </div>
+    </div>
+
+<div class="pay-box"><h3>Payment Details</h3><div class="pg">
+  <div class="pm"><div class="pm-n">M-Pesa</div><p>Send Money to<br><strong>+254 701 662 951</strong><br><span class="sm">Name: Maureen Nyandwaki ✓</span></p></div>
+  <div class="pm"><div class="pm-n">Bank · KES</div><p>Standard Chartered Kenya<br>A/C: <strong>0100449489200</strong><br>Name: Maureen Nyabugei<br><span class="sm"><span class="swift-visible">SWIFT: SCBLKENX</span></span></p></div>
+  <div class="pm gld"><div class="pm-n">Bank · USD ◆</div><p>Standard Chartered<br>A/C: <strong>8700437099300</strong><br>Name: Maureen Nyabugei<br><span class="sm"><span class="swift-visible">SWIFT: SCBLKENX</span></span></p></div>
+  <div class="pm"><div class="pm-n">After Payment</div><p>WhatsApp receipt to<br><strong>+254 701 662 951</strong><br><span class="sm">or fintelliqltd@gmail.com</span></p></div><div class="pm"><div class="pm-n">Wire Transfer (Int'l)</div><p>Standard Chartered Kenya<br><span class="sm"><span class="swift-visible">SWIFT: SCBLKENX</span></span><br><span class="sm">Bank code: 02 &middot; Branch: Nairobi</span></p></div>
+</div><p class="dep">◆ <span class="gold-dep">50% deposit</span> required to begin · balance due upon delivery</p></div><div class="fg"><label>Preferred Payment Method <span class="req">*</span></label>
+  <div class="rg">
+    <label><input type="radio" name="payment_method" value="M-Pesa (+254 701 662 951)" required> M-Pesa — +254 701 662 951</label>
+    <label><input type="radio" name="payment_method" value="Bank KES — Standard Chartered 0100449489200"> Bank Transfer KES — Standard Chartered 0100449489200</label>
+    <label><input type="radio" name="payment_method" value="Bank USD — Standard Chartered 8700437099300"> Bank Transfer USD — Standard Chartered 8700437099300</label>
+  </div></div>
+<div class="fg"><label>M-Pesa Transaction Code <span class="hint">(if already paid)</span></label><input type="text" name="mpesa_code" placeholder="e.g. QDK7XXXXXX"></div>
+    </div>
+    <div class="card"><div class="fg"><label>Anything else?</label><textarea name="notes" rows="2" placeholder="Deadline, urgent requirements..."></textarea></div></div><div class="sw"><button type="submit" class="btn">Submit My Application</button><p class="sn">// responses within 2 hours <span class="gold-tag">&middot; ♦️ 50% deposit confirms your slot</span> //</p></div>
+  </form>
+</div><footer>
+  <div class="footer-gold-line"></div>
+  <p>FintelliQ Company Limited &middot; Nairobi, Kenya</p>
+  <p><a href="mailto:fintelliqltd@gmail.com">fintelliqltd@gmail.com</a> &middot; +254 701 662 951 &middot; WhatsApp: +254 701 662 951 (WhatsApp)</p>
+</footer>
+</body>
+</html>
